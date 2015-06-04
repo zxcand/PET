@@ -7,5 +7,9 @@ Hardware:
   
 Packet:
   OpenCV
-  python flask
+  python
+  
+Reference
+  mjpeg-stream
+  http://mjpeg-stream-client.googlecode.com/svn/trunk/ mjpeg-stream-client-read-only
   
