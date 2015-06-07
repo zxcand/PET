@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import client
+from streamer import Streamer
 import cv2.cv as cv
 
 def is_rect_nonzero(r):
@@ -12,7 +12,8 @@ class CamShiftDemo:
         cv.NamedWindow( "CamShiftDemo", 1 )
         cv.NamedWindow( "Histogram", 1 )
         cv.SetMouseCallback( "CamShiftDemo", self.on_mouse)
-
+        
+        self.piStreamer = Streamer()
         self.drag_start = None      # Set to (x,y) when mouse starts drag
         self.track_window = None    # Set to rect when the mouse drag finishes
 
@@ -60,7 +61,7 @@ class CamShiftDemo:
         hist = cv.CreateHist([180], cv.CV_HIST_ARRAY, [(0,180)], 1 )
         backproject_mode = False
         while True:
-            frame = cv.fromarray(client.streamfile())
+            frame = cv.fromarray(self.piStreamer.getFrame())
 
             # Convert to HSV and keep the hue
             hsv = cv.CreateImage(cv.GetSize(frame), 8, 3)
