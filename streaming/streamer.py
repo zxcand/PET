@@ -9,7 +9,7 @@ import numpy as np
 import threading
 
 DEBUG  = False
-OUTPUT = False
+OUTPUT = True
 
 HOST  = '192.168.1.54'
 PORT  = 8080
@@ -23,22 +23,30 @@ class Streamer(threading.Thread):
 		self.port = _port
 		self.query = _query
 		self.I = None
+		self.lock = threading.Lock()
 
 		#start the reciving stream
 		thread = threading.Thread(target=self.run, args=())
 		thread.daemon = True # Daemonize thread
 		thread.start()  
 
+
 	def run(self):
 		while True:
-			self.I = self.getStreamFromHost()
-			if OUTPUT:
-				img =Image.open(StringIO.StringIO(self.I)) #convert to jpeg object from the stream
-				img = np.array(img)
-				img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-				cv2.imshow("streaming client",img)
-				cv2.waitKey(1)
+			if not self.lock.locked():
+				self.lock.acquire()
+				try:
+					self.I = self.getStreamFromHost()
+					if OUTPUT:
+						img = Image.open(StringIO.StringIO(self.I)) #convert to jpeg object from the stream
+						img = np.array(img)
+						img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+						cv2.imshow("streaming client",img)
+						cv2.waitKey(1)
+				finally:
+					self.lock.release()	
 
+				
 
 	def getStreamFromHost(self):
 		h = httplib.HTTP(self.host, self.port)
@@ -61,9 +69,13 @@ class Streamer(threading.Thread):
 		f = h.getfile()
 		return f.read()
 
-	def getFrame(self):
-		raw = self.getStreamFromHost()
-		img =Image.open(StringIO.StringIO(raw)) #convert to jpeg object from the stream
+	def getFrame(self):	
+		self.lock.acquire()
+		try:
+			img = Image.open(StringIO.StringIO(self.I)) #convert to jpeg object from the stream
+		finally:
+			self.lock.release()	
+
 		img = np.array(img)
 		img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 
