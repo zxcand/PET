@@ -10,7 +10,7 @@ def is_rect_nonzero(r):
 
 class tracker:
     def __init__(self):
-        self.track_window = None
+        self.track_window = (0,0,0,0)
         self.tracking_state = 0
         self.faceDetector = fD.faceDetector()
         self.init = False
@@ -35,13 +35,14 @@ class tracker:
         mask = cv2.inRange(hsv, np.array((0., 60., 32.)), np.array((180., 255., 255.)))
 
         if not self.init:
-            while not self.track_window or not is_rect_nonzero(self.track_window):
-                time.sleep(.07)
-                (x0, y0, w, h) = self.faceDetector.findFace(frame)
-                self.track_window = (int(x0+(1-self.faceScaleDown)/2*w), \
-                                     int(y0+(1-self.faceScaleDown)/2*h), \
-                                     int(self.faceScaleDown*w), \
-                                     int(self.faceScaleDown*h))
+            (x0, y0, w, h) = self.faceDetector.findFace(frame)
+            self.track_window = (int(x0+(1-self.faceScaleDown)/2*w), \
+                                 int(y0+(1-self.faceScaleDown)/2*h), \
+                                 int(self.faceScaleDown*w), \
+                                 int(self.faceScaleDown*h))
+
+            if not is_rect_nonzero(self.track_window):
+                return self.track_window
                 
 
             #when we got track_window, then pre-process

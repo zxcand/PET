@@ -26,11 +26,15 @@ import cv2
 import video
 import tracker2 as tracker
 
+def calc_area((x0, y0, w, h)):
+    return w*h
 
 class App(object):
     def __init__(self, video_src):
         self.cam = video.create_capture(video_src)
         ret, self.frame = self.cam.read()
+        self.start_tracking = False
+        self.track_window = (0,0,0,0)
 
     def run(self):
         tr = tracker.tracker()
@@ -38,9 +42,18 @@ class App(object):
             ret, self.frame = self.cam.read()
             tr_win = tr.track(self.frame)
 
+            if self.start_tracking:
+                if calc_area(self.track_window) < calc_area(tr_win) - 100:
+                    print "back off!!"
+                if calc_area(self.track_window) > calc_area(tr_win) + 100:
+                    print "come forward!!"
+
             ch = 0xFF & cv2.waitKey(5)
             if ch == 27:
                 break
+            elif ch == ord("s"):
+                self.track_window = tr_win
+                self.start_tracking = True
 
         cv2.destroyAllWindows()
 
