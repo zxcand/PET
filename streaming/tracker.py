@@ -15,6 +15,7 @@ class tracker:
         self.faceDetector = fD.faceDetector()
         self.init = False
         self.GUI = True
+        self.faceScaleDown = 0.8
 
         if self.GUI:
             cv.NamedWindow( "CamShiftDemo", 1 )
@@ -50,7 +51,11 @@ class tracker:
                 #c = cv.WaitKey(7) % 0x100
                 time.sleep(.07)
                 print "find face first\n"
-                self.track_window = self.faceDetector.findFace(frame)
+                (x1, y1, w, h) = self.faceDetector.findFace(frame)
+                self.track_window = (int(x1+(1-self.faceScaleDown)/2*w), \
+                                     int(y1+(1-self.faceScaleDown)/2*h), \
+                                     int(self.faceScaleDown*w), \
+                                     int(self.faceScaleDown*h))
 
         # Convert to HSV and keep the hue
         hsv = cv.CreateImage(cv.GetSize(frame), 8, 3)

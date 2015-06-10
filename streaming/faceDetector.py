@@ -18,7 +18,7 @@ class faceDetector:
 
     def findFace(self, img):
         print "start detect faces"
-        gray = cv2.cvtColor(np.array(cv.GetMat(img)), cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.equalizeHist(gray)
 
         rects = self.detect(gray)
