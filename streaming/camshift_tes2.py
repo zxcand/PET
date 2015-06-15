@@ -24,22 +24,27 @@ Keys:
 
 import cv2
 import video
+from streamer import Streamer
 import tracker2 as tracker
 
 def calc_area((x0, y0, w, h)):
     return w*h
 
 class App(object):
-    def __init__(self, video_src):
-        self.cam = video.create_capture(video_src)
-        ret, self.frame = self.cam.read()
+    def __init__(self):
+        #self.cam = video.create_capture(video_src)
+        self.piStreamer = Streamer()
         self.start_tracking = False
         self.track_window = (0,0,0,0)
 
     def run(self):
+
         tr = tracker.tracker()
         while True:
-            ret, self.frame = self.cam.read()
+            #ret, self.frame = self.cam.read()
+            self.frame = self.piStreamer.getFrame()
+            cv2.imshow('test',self.frame)
+            cv2.waitKey(1)
             tr_win = tr.track(self.frame)
 
             if self.start_tracking:
@@ -57,9 +62,5 @@ class App(object):
 
         cv2.destroyAllWindows()
 
-if __name__ == '__main__':
-    import sys
-    try: video_src = sys.argv[1]
-    except: video_src = 0
-    print __doc__
-    App(video_src).run()
+if __name__ == '__main__':    
+    App().run()
