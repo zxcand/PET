@@ -8,6 +8,9 @@ def is_rect_nonzero(r):
     (_,_,w,h) = r
     return (w > 0) and (h > 0)
 
+def calc_area((x0, y0, w, h)):
+    return w*h
+
 class tracker:
     def __init__(self):
         self.track_window = (0,0,0,0)
@@ -15,6 +18,8 @@ class tracker:
         self.faceDetector = fD.faceDetector()
         self.init = False
         self.faceScaleDown = 0.8
+        self.minFaceArea = 225
+        self.maxFaceArea = 300000
 
         cv2.namedWindow('camshift')
 
@@ -29,6 +34,10 @@ class tracker:
         cv2.imshow('hist', img)
 
     def track(self, frame):
+
+        if calc_area(self.track_window) < self.minFaceArea or \
+           calc_area(self.track_window) > self.maxFaceArea:
+            self.init = False
 
         vis = frame.copy()
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
