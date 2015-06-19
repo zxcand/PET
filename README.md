@@ -1,13 +1,17 @@
 # PET
-final project of NTU IOT 2015 spring
+Here is our final project of NTU IOT coure on 2015 spring.
 
 Hardware:
-  nVidia Jetson tk1
-  MediaTek Linkit w/ wifi 
-  
-Packet:
-  OpenCV
-  python
+  raspberry pi model B+ (with pi camera)
+  3D models made by ourselves (see:  )
+
+Software architecture
+  Pet
+    streamer
+    controller
+    trackcer
+      face detector
+
   
 Reference
   mjpeg-stream
