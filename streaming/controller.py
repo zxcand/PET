@@ -1,13 +1,18 @@
 import curses
 import RPi.GPIO as GPIO
+from numpy import interp
 
 PWM_FREQ = 100
+DUTY_MAX = 20
+DUTY_MIN = 0
+ANGLE_MAX = 180
+ANGLE_MIN = 0
 
-SERVO_PIN  = 18
-MOTOR_PIN1 = 27 #IN1 on L298
-MOTOR_PIN2 = 22 #IN2 on L298
-MOTOR_PIN3 = 23 #IN3 on L298
-MOTOR_PIN4 = 24 #IN4 on L298
+SERVO_PIN  = 18 #p12 
+MOTOR_PIN1 = 27 #p13  IN1 on L298
+MOTOR_PIN2 = 22 #p15  IN2 on L298
+MOTOR_PIN3 = 23 #p16  IN3 on L298
+MOTOR_PIN4 = 24 #p18  IN4 on L298
 
 MOTOR_STAY = 0
 MOTOR_FORWARD = 1
@@ -27,22 +32,22 @@ class Controller:
 		GPIO.setup(MOTOR_PIN4, GPIO.OUT)
 		
 		self.servo_pwm = GPIO.PWM(SERVO_PIN, PWM_FREQ)
-		self.servo_pwm.start(0) #init duty cycle
+		self.servo_pwm.start(50) #init duty cycle
 
 	def __del__(self):
 		GPIO.cleanup()
 		self.servo_pwm.stop()
 
 	def setServo(self,angle):
-		duty = float(angle) / 10.0 + 2.5
-		pwm.servo_pwm.ChangeDutyCycle(duty)
+		duty = interp(angle,[ANGLE_MIN,ANGLE_MAX],[DUTY_MIN,DUTY_MAX])
+		self.servo_pwm.ChangeDutyCycle(duty)
 
 	def lookUpper(self):
-		self.servo_angle = self.servo_angle + 5
+		self.servo_angle = min(ANGLE_MAX, self.servo_angle+10)
 		self.setServo(self.servo_angle)
 
 	def lookLower(self):
-		self.servo_angle = self.servo_angle - 5
+		self.servo_angle = max(ANGLE_MIN, self.servo_angle-10)
 		self.setServo(self.servo_angle)
 
 	def setMotors(self, motion1, motion2):
@@ -95,11 +100,12 @@ if __name__=="__main__":
 			if key == ord('q'):
 				screen.addstr(0, 0, 'quit ')
 				break
-			elif key == ord('1'):
-
-				setServo()
-			elif key == ord('2'):
-			
+			elif key == ord('z'):
+				con.lookUpper()
+				screen.addstr(0, 0, 'upper')
+			elif key == ord('x'):
+				con.lookLower()
+				screen.addstr(0, 0, 'lower')
 			elif key == ord('s'):
 				screen.addstr(0, 0, 'stay ')
 				con.goStay()
@@ -121,3 +127,4 @@ if __name__=="__main__":
 	finally:
 		curses.nocbreak(); screen.keypad(0); curses.echo()
 		curses.endwin()
+		GPIO.cleanup()
