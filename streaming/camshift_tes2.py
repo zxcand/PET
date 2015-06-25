@@ -78,10 +78,13 @@ class App(object):
                 #--- y
                 if get_center_y(tr_win) > self.win_size_y * (self.default_ypos_percent + self.y_tolerance):
                     print "move up your head!!"
+                    # lower the cam
                 elif get_center_y(tr_win) < self.win_size_y * (self.default_ypos_percent - self.y_tolerance):
                     print "lower your head!!"
+                    # raise the cam
                 else:
                     print "stay in vertical!!"
+                    # stay
                 
                 
 
