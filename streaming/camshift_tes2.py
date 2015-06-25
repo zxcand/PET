@@ -24,7 +24,7 @@ Keys:
 
 import cv2
 import video
-from streamer import Streamer
+from streamer import LocalStreamer
 import tracker2 as tracker
 
 def calc_area((x0, y0, w, h)):
@@ -33,7 +33,7 @@ def calc_area((x0, y0, w, h)):
 class App(object):
     def __init__(self):
         #self.cam = video.create_capture(video_src)
-        self.piStreamer = Streamer()
+        self.piStreamer = LocalStreamer()
         self.start_tracking = False
         self.track_window = (0,0,0,0)
 

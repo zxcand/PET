@@ -6,6 +6,11 @@ import cv2.cv as cv
 class faceDetector:
     def __init__(self):
         self.cascade = cv2.CascadeClassifier("haarcascades/haarcascade_frontalface_alt.xml")
+        #self.cascade = cv2.CascadeClassifier("haarcascades/haarcascade_upperbody.xml")
+        #self.cascade = cv2.CascadeClassifier("haarcascades/haarcascade_mcs_upperbody.xml")
+        #self.cascade = cv2.CascadeClassifier("haarcascades/haarcascade_lowerbody.xml")
+        #self.cascade = cv2.CascadeClassifier("haarcascades/haarcascade_fullbody.xml")
+        
 
     def detect(self, img):
         rects = self.cascade.detectMultiScale(img, scaleFactor=1.3, minNeighbors=4, minSize=(30, 30), flags = cv.CV_HAAR_SCALE_IMAGE)
