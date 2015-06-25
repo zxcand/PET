@@ -10,7 +10,7 @@ import threading
 import time
 
 DEBUG  = False
-OUTPUT = True
+OUTPUT = False
 
 HOST  = '192.168.1.54'
 PORT  = 8080

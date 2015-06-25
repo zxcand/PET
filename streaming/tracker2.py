@@ -21,7 +21,9 @@ class tracker:
         self.minFaceArea = 225
         self.maxFaceArea = 300000
 
-        cv2.namedWindow('camshift')
+        self.GUI = False
+	if self.GUI:
+            cv2.namedWindow('camshift')
 
     def show_hist(self):
         bin_count = self.hist.shape[0]
@@ -63,7 +65,8 @@ class tracker:
             hist = cv2.calcHist( [hsv_roi], [0], mask_roi, [16], [0, 180] )
             cv2.normalize(hist, hist, 0, 255, cv2.NORM_MINMAX);
             self.hist = hist.reshape(-1)
-            self.show_hist()
+            if self.GUI:
+                self.show_hist()
 
             vis_roi = vis[y0:y1, x0:x1]
             cv2.bitwise_not(vis_roi, vis_roi)
@@ -80,6 +83,7 @@ class tracker:
         try: cv2.ellipse(vis, track_box, (0, 0, 255), 2)
         except: print track_box
 
-        cv2.imshow('camshift', vis)
+        if self.GUI:
+            cv2.imshow('camshift', vis)
 
         return self.track_window
