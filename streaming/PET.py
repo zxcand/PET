@@ -28,6 +28,9 @@ class PET():
         self.default_xpos_percent = 0.5
         self.win_size_x = 640
 
+        self.face_area = -1;
+        self.area_tolerance = 10000
+
     def run(self):
 
         tr = tracker.tracker()
@@ -47,9 +50,11 @@ class PET():
                 else:
                     print "stay in horizontal!!"
                 #--- then distance
-                    if calc_area(tr_win) - 10000 > calc_area(self.track_window):
+                #--- if all function work well
+                #--- we should calc "distance = area / cos(theta)"
+                    if calc_area(tr_win) - self.area_tolerance > self.face_area:
                         print "back off!!"
-                    elif calc_area(tr_win) + 10000 < calc_area(self.track_window):
+                    elif calc_area(tr_win) + self.area_tolerance < self.face_area:
                         print "come forward!!"
                     else:
                         print "stay in distance!!"
@@ -68,7 +73,7 @@ class PET():
             if ch == 27:
                 break
             elif ch == ord("s"):
-                self.track_window = tr_win
+                self.face_area = calc_area(tr_win)
                 self.start_tracking = True
 
         cv2.destroyAllWindows()
