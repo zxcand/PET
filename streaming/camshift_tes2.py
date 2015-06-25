@@ -38,18 +38,17 @@ def get_center_y((x0, y0, w, h)):
 
 class App(object):
     def __init__(self):
-        #self.cam = video.create_capture(video_src)
         self.piStreamer = LocalStreamer()
         self.start_tracking = False
         self.track_window = (0,0,0,0)
-        
-        self.win_default_y_percent = 0.35
+
+        self.y_tolerance = 0.1
+        self.default_ypos_percent = 0.4
         self.win_size_y = 480
-        self.win_default_y = np.floor(self.win_size_y * self.win_default_y_percent)
-        
-        self.win_default_x_percent = 0.5
+
+        self.x_tolerance = 0.1
+        self.default_xpos_percent = 0.5
         self.win_size_x = 640
-        self.win_default_x = np.floor(self.win_size_x * self.win_default_x_percent)
 
     def run(self):
         #con = controller.controller()
@@ -63,23 +62,23 @@ class App(object):
 
             if self.start_tracking:
                 #--- x
-                if get_center_x(tr_win) > self.win_default_x + 15:
+                if get_center_x(tr_win) > self.win_size_x * (self.default_xpos_percent + self.x_tolerance):
                     print "move right!!"
-                elif get_center_x(tr_win) < self.win_default_x - 15:
+                elif get_center_x(tr_win) < self.win_size_x * (self.default_xpos_percent - self.x_tolerance):
                     print "move left!!"
                 else:
                     print "stay in horizontal!!"
-                #--- than distance
-                    if calc_area(self.track_window) < calc_area(tr_win) - 1200:
+                #--- then distance
+                    if calc_area(tr_win) - 10000 > calc_area(self.track_window):
                         print "back off!!"
-                    elif calc_area(self.track_window) > calc_area(tr_win) + 1200:
+                    elif calc_area(tr_win) + 10000 < calc_area(self.track_window):
                         print "come forward!!"
                     else:
                         print "stay in distance!!"
                 #--- y
-                if get_center_y(tr_win) > self.win_default_y + 15:
+                if get_center_y(tr_win) > self.win_size_y * (self.default_ypos_percent + self.y_tolerance):
                     print "move up your head!!"
-                elif get_center_y(tr_win) < self.win_default_y - 15:
+                elif get_center_y(tr_win) < self.win_size_y * (self.default_ypos_percent - self.y_tolerance):
                     print "lower your head!!"
                 else:
                     print "stay in vertical!!"
