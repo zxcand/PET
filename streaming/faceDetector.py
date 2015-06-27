@@ -5,7 +5,7 @@ import cv2.cv as cv
 
 class faceDetector:
     def __init__(self):
-        self.cascade = cv2.CascadeClassifier("haarcascades/haarcascade_frontalface_alt.xml")
+        self.cascade = cv2.CascadeClassifier("/home/pi/Project/PET/streaming/haarcascades/haarcascade_frontalface_alt.xml")
         #self.cascade = cv2.CascadeClassifier("haarcascades/haarcascade_upperbody.xml")
         #self.cascade = cv2.CascadeClassifier("haarcascades/haarcascade_mcs_upperbody.xml")
         #self.cascade = cv2.CascadeClassifier("haarcascades/haarcascade_lowerbody.xml")
@@ -22,11 +22,11 @@ class faceDetector:
         return rects
 
     def findFace(self, img):
-        cv2.imshow('FD', img)
+        #cv2.imshow('FD', img)
         
         print "start detect faces"
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        gray = cv2.equalizeHist(gray)
+        #gray = cv2.equalizeHist(gray)
 
         rects = self.detect(gray)
 

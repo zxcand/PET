@@ -15,8 +15,8 @@ def get_center_y((x0, y0, w, h)):
 
 class PET():
     def __init__(self):
-        self.piStreamer = LocalStreamer()
-        #self.cam = Camera()
+        #self.piStreamer = LocalStreamer()
+        self.cam = Camera()
         self.controller = Controller()
         self.start_tracking = False
         self.track_window = (0,0,0,0)
@@ -37,8 +37,8 @@ class PET():
         tr = tracker.tracker()
         while True:
 
-            #self.frame = self.cam.getMat()
-            self.frame = self.piStreamer.getFrame()
+            self.frame = self.cam.getMat()
+            #self.frame = self.piStreamer.getFrame()
 
             tr_win = tr.track(self.frame)
 

@@ -33,10 +33,10 @@ class tracker:
             h = int(self.hist[i])
             cv2.rectangle(img, (i*bin_w+2, 255), ((i+1)*bin_w-2, 255-h), (int(180.0*i/bin_count), 255, 255), -1)
         img = cv2.cvtColor(img, cv2.COLOR_HSV2BGR)
-        cv2.imshow('hist', img)
+        #cv2.imshow('hist', img)
 
     def track(self, frame):
-        cv2.imshow('tracker', frame)
+        #cv2.imshow('tracker', frame)
 
         if calc_area(self.track_window) < self.minFaceArea or \
            calc_area(self.track_window) > self.maxFaceArea:

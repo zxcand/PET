@@ -12,6 +12,9 @@ class Camera(object):
     thread = None  # background thread that reads frames from camera
     frame = None  # current frame is stored here by background thread
     last_access = 0  # time of last client access to the camera
+    
+    def __init__(self):
+        self.initialize()
 
     def initialize(self):
         if Camera.thread is None:
@@ -25,15 +28,11 @@ class Camera(object):
 
     def get_frame(self):
         Camera.last_access = time.time()
-        self.initialize()
         return self.frame
     
     def getMat(self):
         frame = self.get_frame()
         img = cv2.imdecode( np.fromstring(frame, np.uint8), cv2.CV_LOAD_IMAGE_COLOR)
-        cv2.imshow('test',img)
-        cv2.waitKey(1)
-        print type(img) 
         return img 
 
 
