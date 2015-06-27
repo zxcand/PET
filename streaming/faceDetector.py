@@ -22,6 +22,8 @@ class faceDetector:
         return rects
 
     def findFace(self, img):
+        cv2.imshow('FD', img)
+        
         print "start detect faces"
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.equalizeHist(gray)

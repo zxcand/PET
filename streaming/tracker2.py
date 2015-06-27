@@ -21,7 +21,7 @@ class tracker:
         self.minFaceArea = 225
         self.maxFaceArea = 300000
 
-        self.GUI = False
+        self.GUI = True
 	if self.GUI:
             cv2.namedWindow('camshift')
 
@@ -36,6 +36,7 @@ class tracker:
         cv2.imshow('hist', img)
 
     def track(self, frame):
+        cv2.imshow('tracker', frame)
 
         if calc_area(self.track_window) < self.minFaceArea or \
            calc_area(self.track_window) > self.maxFaceArea:
