@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
 
-#from camera import Cam
+from controller import Controller
+from camera import Camera
 import tracker2 as tracker
 from streamer import LocalStreamer
 
@@ -15,8 +16,8 @@ def get_center_y((x0, y0, w, h)):
 class PET():
     def __init__(self):
         self.piStreamer = LocalStreamer()
-        #self.cam = Cam()
-
+        #self.cam = Camera()
+        self.controller = Controller()
         self.start_tracking = False
         self.track_window = (0,0,0,0)
 
@@ -36,7 +37,7 @@ class PET():
         tr = tracker.tracker()
         while True:
 
-            #self.frame = self.cam.getFrame()
+            #self.frame = self.cam.getMat()
             self.frame = self.piStreamer.getFrame()
 
             tr_win = tr.track(self.frame)
@@ -45,8 +46,10 @@ class PET():
                 #--- x
                 if get_center_x(tr_win) > self.win_size_x * (self.default_xpos_percent + self.x_tolerance):
                     print "move right!!"
+                    self.controller.goLeft()
                 elif get_center_x(tr_win) < self.win_size_x * (self.default_xpos_percent - self.x_tolerance):
                     print "move left!!"
+                    self.controller.goRight()
                 else:
                     print "stay in horizontal!!"
                 #--- then distance
@@ -54,16 +57,21 @@ class PET():
                 #--- we should calc "distance = area / cos(theta)"
                     if calc_area(tr_win) - self.area_tolerance > self.face_area:
                         print "back off!!"
+                        self.controller.goForward()
                     elif calc_area(tr_win) + self.area_tolerance < self.face_area:
                         print "come forward!!"
+                        self.controller.goBack()
                     else:
                         print "stay in distance!!"
+                        self.controller.goStay()
                 #--- y
                 if get_center_y(tr_win) > self.win_size_y * (self.default_ypos_percent + self.y_tolerance):
                     print "move up your head!!"
                     # lower the cam
+                    self.controller.lookLower()
                 elif get_center_y(tr_win) < self.win_size_y * (self.default_ypos_percent - self.y_tolerance):
                     print "lower your head!!"
+                    self.controller.lookUpper()
                     # raise the cam
                 else:
                     print "stay in vertical!!"

@@ -5,6 +5,8 @@ import time
 import io
 import threading
 import picamera
+import cv2
+import numpy as np
 
 class Camera(object):
     thread = None  # background thread that reads frames from camera
@@ -26,9 +28,12 @@ class Camera(object):
         self.initialize()
         return self.frame
     
-    def get_mat(self):
+    def getMat(self):
         frame = self.get_frame()
-        img = cv2.imdecode( np.fromstring(frame, np.uint8), cv2.LOAD_IMAGE_COLOR)
+        img = cv2.imdecode( np.fromstring(frame, np.uint8), cv2.CV_LOAD_IMAGE_COLOR)
+        cv2.imshow('test',img)
+        cv2.waitKey(1)
+        print type(img) 
         return img 
 
 
@@ -37,7 +42,7 @@ class Camera(object):
     def _thread(cls):
         with picamera.PiCamera() as camera:
             # camera setup
-            camera.resolution = (320, 240)
+            camera.resolution = (640, 480)
             camera.hflip = True
             camera.vflip = False
 
