@@ -34,8 +34,8 @@ class PET():
         self.face_area = 64000
         self.area_tolerance = 10000
 
-        self.DegPerPix = 0.2
-        self.step = 0.75
+        self.DegPerPix = 0.2 # 0.2 at distance == 2 m
+        self.step = 1.0
 
     def run(self):
 
