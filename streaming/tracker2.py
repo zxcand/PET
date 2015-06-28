@@ -21,7 +21,7 @@ class tracker:
         self.minFaceArea = 225
         self.maxFaceArea = 300000
 
-        self.GUI = True
+        self.GUI = False
 	if self.GUI:
             cv2.namedWindow('camshift')
 
@@ -41,6 +41,7 @@ class tracker:
         if calc_area(self.track_window) < self.minFaceArea or \
            calc_area(self.track_window) > self.maxFaceArea:
             self.init = False
+            self.track_window = (0,0,0,0)
 
         vis = frame.copy()
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)

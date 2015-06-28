@@ -34,10 +34,11 @@ class faceDetector:
         max_rect = (0,0,0,0)
 
         for rect in rects:
-            max_rect = (rect[0], rect[1], rect[2], rect[3])
-            '''
+            #max_rect = (rect[0], rect[1], rect[2], rect[3])
+            
             if rect[2]*rect[3] > max_area:
                 max_rect = (rect[0], rect[1], rect[2], rect[3])
+                max_area = rect[2] * rect[3]
             #'''
                 
         return max_rect

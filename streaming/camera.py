@@ -8,25 +8,46 @@ import picamera
 import cv2
 import numpy as np
 
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    """Video streaming home page."""
+    return render_template('index.html')
+
+@app.route('/video_feed')
+def video_feed():
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return Response(Camera().gen(),
+                mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
 class Camera(object):
     thread = None  # background thread that reads frames from camera
     frame = None  # current frame is stored here by background thread
     last_access = 0  # time of last client access to the camera
-    
+        
     def __init__(self):
-        self.initialize()
+        pass
+
+    def gen(self):
+        """Video streaming generator function."""
+        while True:
+            frame = self.get_frame()
+            yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
     def initialize(self):
         if Camera.thread is None:
             # start background frame thread
             Camera.thread = threading.Thread(target=self._thread)
             Camera.thread.start()
-
-            # wait until frames start to be available
             while self.frame is None:
                 time.sleep(0)
 
     def get_frame(self):
+        self.initialize()
         Camera.last_access = time.time()
         return self.frame
     
@@ -41,8 +62,8 @@ class Camera(object):
     def _thread(cls):
         with picamera.PiCamera() as camera:
             # camera setup
-            camera.resolution = (640, 480)
-            camera.hflip = True
+            camera.resolution = (320, 240)
+            camera.hflip = False
             camera.vflip = False
 
             # let camera warm up
@@ -67,28 +88,6 @@ class Camera(object):
         cls.thread = None
 
 
-cam = Camera()
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    """Video streaming home page."""
-    return render_template('index.html')
-
-
-def gen(camera):
-    """Video streaming generator function."""
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
-
-@app.route('/video_feed')
-def video_feed():
-    """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen(cam),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+        app.run(host='0.0.0.0', debug=True)
