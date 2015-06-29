@@ -21,6 +21,8 @@ MOTOR_STAY = 0
 MOTOR_FORWARD = 1
 MOTOR_BACKWARD = 2
 
+DEG_TO_SEC = 1.0/90
+
 class Controller:
 	servo_angle = 90
 
@@ -81,14 +83,23 @@ class Controller:
 	def goForward(self, degree):
 		self.setMotors( MOTOR_FORWARD, MOTOR_FORWARD)
 
+		t = threading.Timer(degree*DEG_TO_SEC, self.goStay)
+		t.start() 
+
 	def goBack(self,degree):	
 		self.setMotors( MOTOR_BACKWARD, MOTOR_BACKWARD)
+		t = threading.Timer(degree*DEG_TO_SEC, self.goStay)
+		t.start() 
 
 	def goLeft(self,degree):
 		self.setMotors( MOTOR_BACKWARD, MOTOR_FORWARD)
+		t = threading.Timer(degree*DEG_TO_SEC, self.goStay)
+		t.start() 
 
 	def goRight(self,degree):
 		self.setMotors( MOTOR_FORWARD, MOTOR_BACKWARD)
+		t = threading.Timer(degree*DEG_TO_SEC, self.goStay)
+		t.start() 
 
 if __name__=="__main__":
 	con = Controller()
