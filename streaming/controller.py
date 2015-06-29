@@ -1,4 +1,5 @@
 import curses
+import threading
 import RPi.GPIO as GPIO
 from numpy import interp
 
@@ -126,16 +127,16 @@ if __name__=="__main__":
 				con.goStay()
 			elif key == curses.KEY_UP: #Up arrow
 				screen.addstr(0, 0, 'up   ')
-				con.goForward(0)
+				con.goForward(90)
 			elif key == curses.KEY_DOWN: #Down arrow
 				screen.addstr(0, 0, 'down ')
-				con.goBack(0)
+				con.goBack(90)
 			elif key == curses.KEY_LEFT: #Left arrow
 				screen.addstr(0, 0, 'left ')
-				con.goLeft(0)
+				con.goLeft(90)
 			elif key == curses.KEY_RIGHT: #Right arrow
 				screen.addstr(0, 0, 'right')
-				con.goRight(0)			
+				con.goRight(90)			
 			else:
 				screen.addstr(0, 0, 'err  ')
 
