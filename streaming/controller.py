@@ -12,6 +12,7 @@ DUTY_MIN = 100 * DUTY_MIN_dt / PWM_dt
 ANGLE_MAX = 180
 ANGLE_MIN = 0
 
+LED_PIN    = 26 #p
 SERVO_PIN  = 18 #p12 
 MOTOR_PIN1 = 27 #p13  IN1 on L298
 MOTOR_PIN2 = 22 #p15  IN2 on L298
@@ -25,10 +26,12 @@ MOTOR_BACKWARD = 2
 DEG_TO_SEC = 1.0/90
 
 class Controller:
+	no_thread   = 0
 	servo_angle = 90
 
 	def __init__(self):
 		GPIO.setmode(GPIO.BCM)
+		GPIO.setup(LED_PIN, GPIO.OUT)
 		GPIO.setup(SERVO_PIN, GPIO.OUT)
 		
 		GPIO.setup(MOTOR_PIN1, GPIO.OUT)
@@ -41,8 +44,14 @@ class Controller:
 		self.servo_pwm.start((DUTY_MAX + DUTY_MIN)/2) #init duty cycle
 		self.goStay() 
 	def __del__(self):
+		self.servo_pwm.stop()	
 		GPIO.cleanup()
-		self.servo_pwm.stop()
+
+	def setLed(self, turnOn):
+		if turnOn:
+			GPIO.setup(LED_PIN, GPIO.HIGH)
+		else:
+			GPIO.setup(LED_PIN, GPIO.LOW)
 
 	def setServo(self):
 		print self.servo_angle
@@ -78,28 +87,49 @@ class Controller:
 			GPIO.output(MOTOR_PIN3, GPIO.LOW)
 			GPIO.output(MOTOR_PIN4, GPIO.HIGH)
 
+	def goStayLater(self):
+		self.no_thread  = self.no_thread - 1
+		if self.no_thread == 0:
+			self.goStay()
+
 	def goStay(self):
 		self.setMotors( MOTOR_STAY, MOTOR_STAY)
 
-	def goForward(self, degree):
+	def goForward(self):
 		self.setMotors( MOTOR_FORWARD, MOTOR_FORWARD)
 
-		t = threading.Timer(degree*DEG_TO_SEC, self.goStay)
-		t.start() 
-
-	def goBack(self,degree):	
+	def goBackward(self):	
 		self.setMotors( MOTOR_BACKWARD, MOTOR_BACKWARD)
-		t = threading.Timer(degree*DEG_TO_SEC, self.goStay)
-		t.start() 
-
-	def goLeft(self,degree):
+	
+	def goLeft(self):
 		self.setMotors( MOTOR_BACKWARD, MOTOR_FORWARD)
-		t = threading.Timer(degree*DEG_TO_SEC, self.goStay)
+
+	def goRight(self):
+		self.setMotors( MOTOR_FORWARD, MOTOR_BACKWARD)
+
+	
+	def goForwardLength(self, degree):
+		self.setMotors( MOTOR_FORWARD, MOTOR_FORWARD)
+		self.no_thread = self.no_thread + 1
+		t = threading.Timer( degree*DEG_TO_SEC, self.goStayLater)
 		t.start() 
 
-	def goRight(self,degree):
+	def goBackLength(self,degree):	
+		self.setMotors( MOTOR_BACKWARD, MOTOR_BACKWARD)
+		self.no_thread = self.no_thread + 1
+		t = threading.Timer( degree*DEG_TO_SEC, self.goStayLater)
+		t.start() 
+
+	def goLeftDegree(self,degree):
+		self.setMotors( MOTOR_BACKWARD, MOTOR_FORWARD)
+		self.no_thread = self.no_thread + 1
+		t = threading.Timer(degree*DEG_TO_SEC, self.goStayLater)
+		t.start() 
+
+	def goRightDegree(self,degree):
 		self.setMotors( MOTOR_FORWARD, MOTOR_BACKWARD)
-		t = threading.Timer(degree*DEG_TO_SEC, self.goStay)
+		self.no_thread = self.no_thread + 1
+		t = threading.Timer(degree*DEG_TO_SEC, self.goStayLater)
 		t.start() 
 
 if __name__=="__main__":
@@ -122,21 +152,30 @@ if __name__=="__main__":
 			elif key == ord('x'):
 				con.lookLower(10)
 				screen.addstr(0, 0, 'lower')
+			
+			elif key == ord('w'):
+				screen.addstr(0, 0, 'on ')
+				con.setLed(True)
+			
+			elif key == ord('e'):
+				screen.addstr(0, 0, 'off ')
+				con.setLed(False)
+			
 			elif key == ord('s'):
 				screen.addstr(0, 0, 'stay ')
 				con.goStay()
 			elif key == curses.KEY_UP: #Up arrow
 				screen.addstr(0, 0, 'up   ')
-				con.goForward(90)
+				con.goForward()
 			elif key == curses.KEY_DOWN: #Down arrow
 				screen.addstr(0, 0, 'down ')
-				con.goBack(90)
+				con.goBackward()
 			elif key == curses.KEY_LEFT: #Left arrow
 				screen.addstr(0, 0, 'left ')
-				con.goLeft(90)
+				con.goLeft()
 			elif key == curses.KEY_RIGHT: #Right arrow
 				screen.addstr(0, 0, 'right')
-				con.goRight(90)			
+				con.goRight()			
 			else:
 				screen.addstr(0, 0, 'err  ')
 

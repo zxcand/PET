@@ -19,7 +19,7 @@ class tracker:
         self.init = False
         self.faceScaleDown = 0.8
         self.minFaceArea = 225
-        self.maxFaceArea = 300000
+        self.maxFaceArea = 73000
 
         self.GUI = False
 	if self.GUI:
