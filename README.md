@@ -57,9 +57,9 @@ return area of the biggest one
 ```
 
 ## Authors and Contributors
-[Fan Wang] (https://github.com/zxcand)  
-[Chih-Yang Chen] (https://github.com/Jayis)  
-Keng-Ming Lee  
+* [Fan Wang] (https://github.com/zxcand)  
+* [Chih-Yang Chen] (https://github.com/Jayis)  
+* Keng-Ming Lee  
 **instructor** : Wei-Chao Chen
 
 ## Reference
