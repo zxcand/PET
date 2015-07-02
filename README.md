@@ -9,9 +9,9 @@ we want to built a robot
 
 ## Work
 #### Hardware:
-raspberry pi model B+ (with pi camera)
-two motors and two wheels
-3D models designed by ourselves (see:  )
+* raspberry pi model B+ (with pi camera)
+* two motors and two wheels
+* 3D models designed by ourselves (see:  )
 
 #### Software architecture:
 '''
