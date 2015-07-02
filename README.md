@@ -7,6 +7,9 @@ we want to built a robot
 - we can control it remotely
 - we can see what it sees
 
+## Demo video
+
+
 ## Work
 #### Hardware:
 - raspberry pi model B+ (with pi camera)
@@ -54,10 +57,14 @@ detect faces
 return area of the biggest one
 ```
 
-##Reference
-1. mjpeg-stream
-2. http://mjpeg-stream-client.googlecode.com/svn/trunk/ mjpeg-stream-client-read-only
+## Team members
+
+
+## Reference
 1. *Rainer Lienhart and Jochen Maydt. An Extended Set of Haar-like Features for Rapid Object Detection. IEEE ICIP 2002, Vol. 1, pp. 900-903, Sep. 2002*
 [[Implemented by OpenCV]] (http://docs.opencv.org/modules/objdetect/doc/cascade_classification.html?highlight=cascadeclassifier)
 2. *Bradski, G.R. “Computer Vision Face Tracking for Use in a Perceptual User Interface”, Intel, 1998*
 [[Implemented by OpenCV]] (http://docs.opencv.org/modules/video/doc/motion_analysis_and_object_tracking.html)
+
+1. mjpeg-stream
+2. http://mjpeg-stream-client.googlecode.com/svn/trunk/ mjpeg-stream-client-read-only
