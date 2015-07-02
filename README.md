@@ -54,16 +54,8 @@ detect faces
 return area of the biggest one
 ```
 
-
-
-  Pet
-    streamer
-    controller
-    trackcer
-      face detector
-'''
-  
-Reference
-  mjpeg-stream
-  http://mjpeg-stream-client.googlecode.com/svn/trunk/ mjpeg-stream-client-read-only
-  
+##Reference
+- mjpeg-stream
+- http://mjpeg-stream-client.googlecode.com/svn/trunk/ mjpeg-stream-client-read-only
+- "Rainer Lienhart and Jochen Maydt. An Extended Set of Haar-like Features for Rapid Object Detection. IEEE ICIP 2002, Vol. 1, pp. 900-903, Sep. 2002"
+Implemented by OpenCV [http://docs.opencv.org/modules/objdetect/doc/cascade_classification.html?highlight=cascadeclassifier]
