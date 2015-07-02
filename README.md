@@ -14,6 +14,9 @@ we want to built a robot
 - 3D models designed by ourselves (see:  )
 
 #### Software architecture:
+we have several classes: PET, camera, controller, tracker, face detector
+
+*www*
 ```
 x = 0
 x = 2 + 2
