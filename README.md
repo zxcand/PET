@@ -1,13 +1,9 @@
-# iPET 
-> Our final project of NTU IoT course on 2015 spring.
-
-## Goal
-we want to built a robot
+## What is iPET
 - which can follow us around
 - we can control it remotely
-- we can see what it sees
+- showing us what it sees
 
-## Demo video
+## Video
 
 
 ## Work
@@ -67,6 +63,3 @@ return area of the biggest one
 [[Implemented by OpenCV]] (http://docs.opencv.org/modules/objdetect/doc/cascade_classification.html?highlight=cascadeclassifier)
 2. *Bradski, G.R. “Computer Vision Face Tracking for Use in a Perceptual User Interface”, Intel, 1998*
 [[Implemented by OpenCV]] (http://docs.opencv.org/modules/video/doc/motion_analysis_and_object_tracking.html)
-
-1. mjpeg-stream
-2. http://mjpeg-stream-client.googlecode.com/svn/trunk/ mjpeg-stream-client-read-only
