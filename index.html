@@ -1,54 +1,37 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Pet : final project of NTU IOT 2015 spring">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Pet</title>
+    <meta charset="UTF-8">
+    <title>Pet by zxcand</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Pet</h1>
+      <h2 class="project-tagline">final project of NTU IOT 2015 spring</h2>
+      <a href="https://github.com/zxcand/PET" class="btn">View on GitHub</a>
+      <a href="https://github.com/zxcand/PET/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/zxcand/PET/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/zxcand/PET">View on GitHub</a>
-
-          <h1 id="project_title">Pet</h1>
-          <h2 id="project_tagline">final project of NTU IOT 2015 spring</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/zxcand/PET/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/zxcand/PET/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a id="ipet" class="anchor" href="#ipet" aria-hidden="true"><span class="octicon octicon-link"></span></a>iPET</h1>
-
-<blockquote>
-<p>Our final project of NTU IoT course on 2015 spring.</p>
-</blockquote>
-
-<h2>
-<a id="what-is-ipet" class="anchor" href="#what-is-ipet" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is iPET</h2>
+    <section class="main-content">
+      <h2>
+<a id="what-is-ipet" class="anchor" href="#what-is-ipet" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is iPET?</h2>
 
 <ul>
-<li>which can follow us around</li>
-<li>we can control it remotely</li>
-<li>we can see what it sees</li>
+<li>a robot pet which can follow us around</li>
+<li>a robot pet we can control it remotely</li>
+<li>a robot pet showing us what it sees</li>
 </ul>
 
 <h2>
 <a id="video" class="anchor" href="#video" aria-hidden="true"><span class="octicon octicon-link"></span></a>Video</h2>
+
+<p><a href="http://youtu.be/Oe8pGG040HU">http://youtu.be/Oe8pGG040HU</a></p>
 
 <h2>
 <a id="work" class="anchor" href="#work" aria-hidden="true"><span class="octicon octicon-link"></span></a>Work</h2>
@@ -72,11 +55,11 @@
 <li>detect faces in current frame, and choose the biggest one to track</li>
 <li>in following frames
 
-<ul>
+<ol>
 <li>track the face</li>
 <li>see if we lose track of the face, yes -&gt; goto step 1</li>
 <li>move the face to the center of the frame</li>
-</ul>
+</ol>
 </li>
 </ol>
 
@@ -105,9 +88,8 @@
 <a id="controller" class="anchor" href="#controller" aria-hidden="true"><span class="octicon octicon-link"></span></a>controller</h6>
 
 <blockquote>
-<p>interface of motors</p>
-
-<p>provide 5 functions: <strong>rotateLeft</strong>, <strong>rotateRight</strong>, <strong>goForward</strong>, <strong>goBackward</strong>, <strong>stay</strong></p>
+<p>interface of motors<br>
+provide 5 functions: <strong>rotateLeft</strong>, <strong>rotateRight</strong>, <strong>goForward</strong>, <strong>goBackward</strong>, <strong>stay</strong></p>
 </blockquote>
 
 <h6>
@@ -128,6 +110,20 @@ return area of the biggest one
 </code></pre>
 
 <h2>
+<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h2>
+
+<ul>
+<li>
+<a href="https://github.com/zxcand">Fan Wang</a><br>
+</li>
+<li>
+<a href="https://github.com/Jayis">Chih-Yang Chen</a><br>
+</li>
+<li>Keng-Ming Lee<br>
+<strong>instructor</strong> : Wei-Chao Chen</li>
+</ul>
+
+<h2>
 <a id="reference" class="anchor" href="#reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reference</h2>
 
 <ol>
@@ -141,25 +137,15 @@ return area of the biggest one
 </li>
 </ol>
 
-<h3>
-<a id="members" class="anchor" href="#members" aria-hidden="true"><span class="octicon octicon-link"></span></a>Members</h3>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/zxcand/PET">Pet</a> is maintained by <a href="https://github.com/zxcand">zxcand</a>.</span>
 
-<p>instructor : Wei-Chao Chen<br>
-Fan Wang <a href="https://github.com/zxcand" class="user-mention">@zxcand</a><br>
-Harry Chen <a href="https://github.com/Jayis" class="user-mention">@Jayis</a><br>
-Keng-Ming Lee <a href="https://github.com/mick90207" class="user-mention">@mick90207</a>  </p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Pet maintained by <a href="https://github.com/zxcand">zxcand</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
+
