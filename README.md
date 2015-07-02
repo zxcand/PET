@@ -14,33 +14,32 @@ we want to built a robot
 - 3D models designed by ourselves (see:  )
 
 #### Software architecture:
-######Algorithm
+#####Algorithm
 1. detect faces in current frame, and choose the biggest one to track
 2. in following frames
    - track the face
    - see if we lose track of the face, yes -> goto step 1
    - move the face to the center of the frame
 
-######Implementation
-`we have several classes: PET, camera, controller, tracker, face detector
+#####Implementation
+we have several classes: PET, camera, controller, tracker, face detector
 
-**PET**
+######PET
 ```
 while True:
   get frame <== from camera
   track certain area <== by tracker
   try to move the area to the center of the frame <== use controller
 ```
-**camera**
-```
-interface of piCam
-```
-**controller**
-```
+######camera
+> interface of piCam
+
+######controller
+> 
 interface of motors
 provide 5 functions: **rotateLeft**, **rotateRight**, **goForward**, **goBackward**, **stay**
-```
-**tracker**
+
+######tracker
 ```
 if we lose track of face:
   detect face <== by face detector
@@ -48,7 +47,7 @@ if we lose track of face:
 
 use camshift to track "tracking area"
 ```
-**face detector**
+######face detector
 ```
 detect faces
 return area of the biggest one
