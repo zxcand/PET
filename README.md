@@ -10,9 +10,10 @@ we want to built a robot
 ## Work
 #### Hardware:
 raspberry pi model B+ (with pi camera)
-  3D models made by ourselves (see:  )
+two motors and two wheels
+3D models made by ourselves (see:  )
 
-Software architecture
+#### Software architecture
   Pet
     streamer
     controller
