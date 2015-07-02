@@ -1,4 +1,5 @@
-# PET
+iPET
+======
 Here is our final project of NTU IOT coure on 2015 spring.
 
 Hardware:
