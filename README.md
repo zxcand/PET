@@ -56,8 +56,11 @@ detect faces
 return area of the biggest one
 ```
 
-## Team members
-
+## Authors and Contributors
+Fan Wang @zxcand  
+Harry Chen @Jayis  
+Keng-Ming Lee 
+**instructor** : Wei-Chao Chen
 
 ## Reference
 1. *Rainer Lienhart and Jochen Maydt. An Extended Set of Haar-like Features for Rapid Object Detection. IEEE ICIP 2002, Vol. 1, pp. 900-903, Sep. 2002*
