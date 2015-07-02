@@ -11,15 +11,16 @@ we want to built a robot
 #### Hardware:
 raspberry pi model B+ (with pi camera)
 two motors and two wheels
-3D models made by ourselves (see:  )
+3D models designed by ourselves (see:  )
 
-#### Software architecture
+#### Software architecture:
+'''
   Pet
     streamer
     controller
     trackcer
       face detector
-
+'''
   
 Reference
   mjpeg-stream
