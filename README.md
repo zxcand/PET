@@ -22,7 +22,7 @@ we want to built a robot
    - move the face to the center of the frame
 
 ######Implementation
-we have several classes: PET, camera, controller, tracker, face detector
+`we have several classes: PET, camera, controller, tracker, face detector
 
 **PET**
 ```
