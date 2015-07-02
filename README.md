@@ -1,7 +1,7 @@
-iPET 
+# iPET 
 ======
 
-# Goal
+## Goal
 We want to built a robot, which can follow us around
 
 Hardware:
