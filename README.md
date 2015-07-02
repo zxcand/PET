@@ -19,10 +19,13 @@ we have several classes: PET, camera, controller, tracker, face detector
 **PET**
 ```
 while (true) {
-  nono
-
+  get frame --> from camera
+  track certain area --> tracker
+  try to move the area to the center of the frame --> **controller**
 }
 ```
+**
+
 
 '''
   Pet
