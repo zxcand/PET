@@ -31,27 +31,121 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a id="demo-video" class="anchor" href="#demo-video" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo video</h3>
+        <h1>
+<a id="ipet" class="anchor" href="#ipet" aria-hidden="true"><span class="octicon octicon-link"></span></a>iPET</h1>
 
-<h3>
-<a id="models" class="anchor" href="#models" aria-hidden="true"><span class="octicon octicon-link"></span></a>Models</h3>
+<blockquote>
+<p>Our final project of NTU IoT course on 2015 spring.</p>
+</blockquote>
 
-<h3>
-<a id="implementations" class="anchor" href="#implementations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementations</h3>
+<h2>
+<a id="goal" class="anchor" href="#goal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goal</h2>
+
+<p>we want to built a robot</p>
 
 <ul>
-<li><p>Face Detection:<br>
-use Cascade Classifier and Haarcascade_frontalface
-"Rainer Lienhart and Jochen Maydt. An Extended Set of Haar-like Features for Rapid Object Detection. IEEE ICIP 2002, Vol. 1, pp. 900-903, Sep. 2002"
-Implemented by OpenCV (<a href="http://docs.opencv.org/modules/objdetect/doc/cascade_classification.html?highlight=cascadeclassifier">http://docs.opencv.org/modules/objdetect/doc/cascade_classification.html?highlight=cascadeclassifier</a>)</p></li>
-<li><p>Tracking:<br>
-use Camshift algorithm to track certain area (in our case, the biggest face)
-Bradski, G.R. Computer Vision Face Tracking for Use in a Perceptual User Interface" Intel, 1998
-Implemented by OpenCV (<a href="http://docs.opencv.org/modules/video/doc/motion_analysis_and_object_tracking.html">http://docs.opencv.org/modules/video/doc/motion_analysis_and_object_tracking.html</a>)</p></li>
-<li><p>Control:<br>
-there are 5 commands to controll our robot-pet: rotate left / rotate right / moving forward / moving backward /stay</p></li>
+<li>which can follow us around</li>
+<li>we can control it remotely</li>
+<li>we can see what it sees</li>
 </ul>
+
+<h2>
+<a id="demo-video" class="anchor" href="#demo-video" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo video</h2>
+
+<h2>
+<a id="work" class="anchor" href="#work" aria-hidden="true"><span class="octicon octicon-link"></span></a>Work</h2>
+
+<h4>
+<a id="hardware" class="anchor" href="#hardware" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware:</h4>
+
+<ul>
+<li>raspberry pi model B+ (with pi camera)</li>
+<li>two motors and two wheels</li>
+<li>3D models designed by ourselves (see:  )</li>
+</ul>
+
+<h4>
+<a id="software-architecture" class="anchor" href="#software-architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>Software architecture:</h4>
+
+<h5>
+<a id="algorithm" class="anchor" href="#algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Algorithm</h5>
+
+<ol>
+<li>detect faces in current frame, and choose the biggest one to track</li>
+<li>in following frames
+
+<ul>
+<li>track the face</li>
+<li>see if we lose track of the face, yes -&gt; goto step 1</li>
+<li>move the face to the center of the frame</li>
+</ul>
+</li>
+</ol>
+
+<h5>
+<a id="implementation" class="anchor" href="#implementation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementation</h5>
+
+<p>we have several classes: PET, camera, controller, tracker, face detector</p>
+
+<h6>
+<a id="pet" class="anchor" href="#pet" aria-hidden="true"><span class="octicon octicon-link"></span></a>PET</h6>
+
+<pre><code>while True:
+  get frame &lt;== from camera
+  track certain area &lt;== by tracker
+  try to move the area to the center of the frame &lt;== use controller
+</code></pre>
+
+<h6>
+<a id="camera" class="anchor" href="#camera" aria-hidden="true"><span class="octicon octicon-link"></span></a>camera</h6>
+
+<blockquote>
+<p>interface of piCam</p>
+</blockquote>
+
+<h6>
+<a id="controller" class="anchor" href="#controller" aria-hidden="true"><span class="octicon octicon-link"></span></a>controller</h6>
+
+<blockquote>
+<p>interface of motors</p>
+
+<p>provide 5 functions: <strong>rotateLeft</strong>, <strong>rotateRight</strong>, <strong>goForward</strong>, <strong>goBackward</strong>, <strong>stay</strong></p>
+</blockquote>
+
+<h6>
+<a id="tracker" class="anchor" href="#tracker" aria-hidden="true"><span class="octicon octicon-link"></span></a>tracker</h6>
+
+<pre><code>if we lose track of face:
+  detect face &lt;== by face detector
+  mark the face as "tracking area"
+
+use camshift to track "tracking area"
+</code></pre>
+
+<h6>
+<a id="face-detector" class="anchor" href="#face-detector" aria-hidden="true"><span class="octicon octicon-link"></span></a>face detector</h6>
+
+<pre><code>detect faces
+return area of the biggest one
+</code></pre>
+
+<h2>
+<a id="team-members" class="anchor" href="#team-members" aria-hidden="true"><span class="octicon octicon-link"></span></a>Team members</h2>
+
+<h2>
+<a id="reference" class="anchor" href="#reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reference</h2>
+
+<ol>
+<li>
+<em>Rainer Lienhart and Jochen Maydt. An Extended Set of Haar-like Features for Rapid Object Detection. IEEE ICIP 2002, Vol. 1, pp. 900-903, Sep. 2002</em>
+<a href="http://docs.opencv.org/modules/objdetect/doc/cascade_classification.html?highlight=cascadeclassifier">[Implemented by OpenCV]</a>
+</li>
+<li><p><em>Bradski, G.R. “Computer Vision Face Tracking for Use in a Perceptual User Interface”, Intel, 1998</em>
+<a href="http://docs.opencv.org/modules/video/doc/motion_analysis_and_object_tracking.html">[Implemented by OpenCV]</a></p></li>
+<li><p>mjpeg-stream</p></li>
+<li>
+<a href="http://mjpeg-stream-client.googlecode.com/svn/trunk/">http://mjpeg-stream-client.googlecode.com/svn/trunk/</a> mjpeg-stream-client-read-only</li>
+</ol>
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
