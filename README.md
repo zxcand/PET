@@ -59,7 +59,7 @@ return area of the biggest one
 ## Authors and Contributors
 Fan Wang @zxcand  
 Harry Chen @Jayis  
-Keng-Ming Lee 
+Keng-Ming Lee  
 **instructor** : Wei-Chao Chen
 
 ## Reference
