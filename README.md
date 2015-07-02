@@ -16,7 +16,7 @@ we want to built a robot
 #### Software architecture:
 we have several classes: PET, camera, controller, tracker, face detector
 
-*www*
+**www**
 ```
 x = 0
 x = 2 + 2
