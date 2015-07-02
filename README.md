@@ -1,6 +1,6 @@
 iPET 
 ======
-> Our final project of NTU IoT course on 2015 spring.
+
 # Goal
 We want to built a robot, which can follow us around
 
