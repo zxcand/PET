@@ -37,9 +37,24 @@
 <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you're using GitHub for Mac or GitHub for Windows, simply sync your repository and you'll see the new branch.</p>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a id="face-detection" class="anchor" href="#face-detection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Face Detection:</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
+<p>use Cascade Classifier and Haarcascade_frontalface
+"Rainer Lienhart and Jochen Maydt. An Extended Set of Haar-like Features for Rapid Object Detection. IEEE ICIP 2002, Vol. 1, pp. 900-903, Sep. 2002"
+Implemented by OpenCV (<a href="http://docs.opencv.org/modules/objdetect/doc/cascade_classification.html?highlight=cascadeclassifier">http://docs.opencv.org/modules/objdetect/doc/cascade_classification.html?highlight=cascadeclassifier</a>)</p>
+
+<h3>
+<a id="tracking" class="anchor" href="#tracking" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tracking:</h3>
+
+<p>use Camshift algorithm to track certain area (in our case, the biggest face)
+"Bradski, G.R. °ßComputer Vision Face Tracking for Use in a Perceptual User Interface°®, Intel, 1998"
+Implemented by OpenCV (<a href="http://docs.opencv.org/modules/video/doc/motion_analysis_and_object_tracking.html">http://docs.opencv.org/modules/video/doc/motion_analysis_and_object_tracking.html</a>)</p>
+
+<h3>
+<a id="control" class="anchor" href="#control" aria-hidden="true"><span class="octicon octicon-link"></span></a>Control:</h3>
+
+<p>there are 5 commands to controll our robot: rotate left, rotate right, moving forward, moving backward, stay
+We've crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
 
 <h3>
 <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating pages manually</h3>
@@ -49,12 +64,8 @@
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<p>Fan Wang <a href="https://github.com/zxcand" class="user-mention">@zxcand</a>
+Harry Chen <a href="https://github.com/Jayis" class="user-mention">@Jayis</a></p>
       </section>
     </div>
 
