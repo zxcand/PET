@@ -1,9 +1,10 @@
-## What is iPET
-- which can follow us around
-- we can control it remotely
-- showing us what it sees
+## What is iPET?
+- a robot pet which can follow us around
+- a robot pet we can control it remotely
+- a robot pet showing us what it sees
 
 ## Video
+http://youtu.be/Oe8pGG040HU
 
 
 ## Work
