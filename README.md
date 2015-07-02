@@ -20,9 +20,9 @@ we want to built a robot
 #####Algorithm
 1. detect faces in current frame, and choose the biggest one to track
 2. in following frames
-   - track the face
-   - see if we lose track of the face, yes -> goto step 1
-   - move the face to the center of the frame
+   1. track the face
+   2. see if we lose track of the face, yes -> goto step 1
+   3. move the face to the center of the frame
 
 #####Implementation
 we have several classes: PET, camera, controller, tracker, face detector
