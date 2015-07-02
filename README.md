@@ -32,12 +32,14 @@ while True:
   try to move the area to the center of the frame <== use controller
 ```
 **camera**
-> interface of piCam
-
+```
+interface of piCam
+```
 **controller**
-> interface of motors\n
+```
+interface of motors
 provide 5 functions: **rotateLeft**, **rotateRight**, **goForward**, **goBackward**, **stay**
-
+```
 **tracker**
 ```
 if we lose track of face:
