@@ -16,11 +16,12 @@ we want to built a robot
 #### Software architecture:
 we have several classes: PET, camera, controller, tracker, face detector
 
-**www**
+**PET**
 ```
-x = 0
-x = 2 + 2
-what is x
+while (true) {
+  nono
+
+}
 ```
 
 '''
