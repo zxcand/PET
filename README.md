@@ -8,7 +8,7 @@ we want to built a robot
 - we can see what it sees
 
 ## Work
-### Hardware:
+#### Hardware:
   raspberry pi model B+ (with pi camera)
   3D models made by ourselves (see:  )
 
