@@ -35,7 +35,7 @@ while True:
 > interface of piCam
 
 **controller**
-> interface of motors
+> interface of motors\n
 provide 5 functions: **rotateLeft**, **rotateRight**, **goForward**, **goBackward**, **stay**
 
 **tracker**
