@@ -2,7 +2,10 @@
 > Our final project of NTU IoT course on 2015 spring.
 
 ## Goal
-We want to built a robot, which can follow us around
+we want to built a robot
+- which can follow us around
+- we can control it remotely
+- we can see what it sees
 
 Hardware:
   raspberry pi model B+ (with pi camera)
